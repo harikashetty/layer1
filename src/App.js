@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [count, setCount] = useState(3);
+
+  useEffect(() => {
+    if (count === 0) {
+      window.location.href = "https://layer2-ten.vercel.app/";
+      return;
+    }
+    const timer = setTimeout(() => setCount(count - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [count]);
+
   return (
     <div style={{
       backgroundColor: "#0b1220",
@@ -14,24 +25,16 @@ function App() {
       textAlign: "center",
       padding: "20px"
     }}>
-      <h1 style={{fontSize: "2.2rem"}}>🎈 Surprise Layer 1 🎈</h1>
-      <p style={{maxWidth: 600}}>
-        A tiny hint: keep clicking — the real surprise is hidden in layers. Ready?
+      <h1 style={{ fontSize: "2.2rem", opacity: 0, animation: "fadeIn 1s forwards" }}>🎈 Surprise Layer 1 🎈</h1>
+      <p style={{ maxWidth: 600, marginTop: "15px", opacity: 0, animation: "fadeIn 1s forwards 0.5s" }}>
+        {count > 0 ? `Next in ${count}…` : "Opening next layer…"}
       </p>
-      <a
-        href="https://layer2-ten.vercel.app/"
-        style={{
-          backgroundColor: "#ff6b95",
-          color: "white",
-          padding: "12px 22px",
-          borderRadius: "12px",
-          textDecoration: "none",
-          fontSize: "18px",
-          marginTop: "18px"
-        }}
-      >
-        Open Next Layer 🎉
-      </a>
+
+      <style>{`
+        @keyframes fadeIn {
+          to { opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
