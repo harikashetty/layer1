@@ -19,7 +19,7 @@ function App() {
         A tiny hint: keep clicking — the real surprise is hidden in layers. Ready?
       </p>
       <a
-        href="https://layer2-surprise.vercel.app/"
+        href="https://layer2-ten.vercel.app/"
         style={{
           backgroundColor: "#ff6b95",
           color: "white",
